@@ -2,9 +2,11 @@ from flask import Flask, render_template, request, jsonify
 import requests
 from google.oauth2 import service_account
 from google.auth.transport.requests import Request
+from flask_cors import CORS  # Importar CORS
 
 app = Flask(__name__)
 
+CORS(app)
 # Configuración de la cuenta de servicio
 CREDENTIALS_PATH = "" # gen-lang-client-0725079642-3c817099c728.json
 SCOPES = ["https://www.googleapis.com/auth/generative-language"]
@@ -58,4 +60,4 @@ def analyze():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
